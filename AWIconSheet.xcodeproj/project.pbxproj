@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA215FD0163A29CA00A3E18B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FCF163A29CA00A3E18B /* UIKit.framework */; };
+		DA215FD2163A29CA00A3E18B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FD1163A29CA00A3E18B /* Foundation.framework */; };
+		DA215FD4163A29CA00A3E18B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FD3163A29CA00A3E18B /* CoreGraphics.framework */; };
+		DA215FDA163A29CA00A3E18B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA215FD8163A29CA00A3E18B /* InfoPlist.strings */; };
+		DA215FDC163A29CA00A3E18B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA215FDB163A29CA00A3E18B /* main.m */; };
+		DA215FE0163A29CA00A3E18B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA215FDF163A29CA00A3E18B /* AppDelegate.m */; };
+		DA215FE2163A29CA00A3E18B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DA215FE1163A29CA00A3E18B /* Default.png */; };
+		DA215FE4163A29CA00A3E18B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA215FE3163A29CA00A3E18B /* Default@2x.png */; };
+		DA215FE6163A29CA00A3E18B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA215FE5163A29CA00A3E18B /* Default-568h@2x.png */; };
+		DA215FE9163A29CA00A3E18B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA215FE8163A29CA00A3E18B /* ViewController.m */; };
+		DA215FEC163A29CA00A3E18B /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA215FEA163A29CA00A3E18B /* ViewController_iPhone.xib */; };
+		DA215FEF163A29CA00A3E18B /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA215FED163A29CA00A3E18B /* ViewController_iPad.xib */; };
+		DA215FF7163A29CA00A3E18B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FF6163A29CA00A3E18B /* SenTestingKit.framework */; };
+		DA215FF8163A29CA00A3E18B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FCF163A29CA00A3E18B /* UIKit.framework */; };
+		DA215FF9163A29CA00A3E18B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FD1163A29CA00A3E18B /* Foundation.framework */; };
+		DA216001163A29CA00A3E18B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA215FFF163A29CA00A3E18B /* InfoPlist.strings */; };
+		DA216004163A29CA00A3E18B /* AWIconSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA216003163A29CA00A3E18B /* AWIconSheetTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA215FFA163A29CA00A3E18B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA215FC2163A29C900A3E18B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA215FCA163A29CA00A3E18B;
+			remoteInfo = AWIconSheet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DA215FCB163A29CA00A3E18B /* AWIconSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AWIconSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA215FCF163A29CA00A3E18B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA215FD1163A29CA00A3E18B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA215FD3163A29CA00A3E18B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA215FD7163A29CA00A3E18B /* AWIconSheet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AWIconSheet-Info.plist"; sourceTree = "<group>"; };
+		DA215FD9163A29CA00A3E18B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA215FDB163A29CA00A3E18B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DA215FDD163A29CA00A3E18B /* AWIconSheet-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AWIconSheet-Prefix.pch"; sourceTree = "<group>"; };
+		DA215FDE163A29CA00A3E18B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DA215FDF163A29CA00A3E18B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DA215FE1163A29CA00A3E18B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		DA215FE3163A29CA00A3E18B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		DA215FE5163A29CA00A3E18B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DA215FE7163A29CA00A3E18B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DA215FE8163A29CA00A3E18B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DA215FEB163A29CA00A3E18B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		DA215FEE163A29CA00A3E18B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		DA215FF5163A29CA00A3E18B /* AWIconSheetTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AWIconSheetTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA215FF6163A29CA00A3E18B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DA215FFE163A29CA00A3E18B /* AWIconSheetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AWIconSheetTests-Info.plist"; sourceTree = "<group>"; };
+		DA216000163A29CA00A3E18B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA216002163A29CA00A3E18B /* AWIconSheetTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWIconSheetTests.h; sourceTree = "<group>"; };
+		DA216003163A29CA00A3E18B /* AWIconSheetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWIconSheetTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA215FC8163A29CA00A3E18B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA215FD0163A29CA00A3E18B /* UIKit.framework in Frameworks */,
+				DA215FD2163A29CA00A3E18B /* Foundation.framework in Frameworks */,
+				DA215FD4163A29CA00A3E18B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA215FF1163A29CA00A3E18B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA215FF7163A29CA00A3E18B /* SenTestingKit.framework in Frameworks */,
+				DA215FF8163A29CA00A3E18B /* UIKit.framework in Frameworks */,
+				DA215FF9163A29CA00A3E18B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA215FC0163A29C900A3E18B = {
+			isa = PBXGroup;
+			children = (
+				DA215FD5163A29CA00A3E18B /* AWIconSheet */,
+				DA215FFC163A29CA00A3E18B /* AWIconSheetTests */,
+				DA215FCE163A29CA00A3E18B /* Frameworks */,
+				DA215FCC163A29CA00A3E18B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DA215FCC163A29CA00A3E18B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA215FCB163A29CA00A3E18B /* AWIconSheet.app */,
+				DA215FF5163A29CA00A3E18B /* AWIconSheetTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA215FCE163A29CA00A3E18B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA215FCF163A29CA00A3E18B /* UIKit.framework */,
+				DA215FD1163A29CA00A3E18B /* Foundation.framework */,
+				DA215FD3163A29CA00A3E18B /* CoreGraphics.framework */,
+				DA215FF6163A29CA00A3E18B /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA215FD5163A29CA00A3E18B /* AWIconSheet */ = {
+			isa = PBXGroup;
+			children = (
+				DA215FDE163A29CA00A3E18B /* AppDelegate.h */,
+				DA215FDF163A29CA00A3E18B /* AppDelegate.m */,
+				DA215FE7163A29CA00A3E18B /* ViewController.h */,
+				DA215FE8163A29CA00A3E18B /* ViewController.m */,
+				DA215FEA163A29CA00A3E18B /* ViewController_iPhone.xib */,
+				DA215FED163A29CA00A3E18B /* ViewController_iPad.xib */,
+				DA215FD6163A29CA00A3E18B /* Supporting Files */,
+			);
+			path = AWIconSheet;
+			sourceTree = "<group>";
+		};
+		DA215FD6163A29CA00A3E18B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA215FD7163A29CA00A3E18B /* AWIconSheet-Info.plist */,
+				DA215FD8163A29CA00A3E18B /* InfoPlist.strings */,
+				DA215FDB163A29CA00A3E18B /* main.m */,
+				DA215FDD163A29CA00A3E18B /* AWIconSheet-Prefix.pch */,
+				DA215FE1163A29CA00A3E18B /* Default.png */,
+				DA215FE3163A29CA00A3E18B /* Default@2x.png */,
+				DA215FE5163A29CA00A3E18B /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA215FFC163A29CA00A3E18B /* AWIconSheetTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA216002163A29CA00A3E18B /* AWIconSheetTests.h */,
+				DA216003163A29CA00A3E18B /* AWIconSheetTests.m */,
+				DA215FFD163A29CA00A3E18B /* Supporting Files */,
+			);
+			path = AWIconSheetTests;
+			sourceTree = "<group>";
+		};
+		DA215FFD163A29CA00A3E18B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA215FFE163A29CA00A3E18B /* AWIconSheetTests-Info.plist */,
+				DA215FFF163A29CA00A3E18B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DA215FCA163A29CA00A3E18B /* AWIconSheet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA216007163A29CA00A3E18B /* Build configuration list for PBXNativeTarget "AWIconSheet" */;
+			buildPhases = (
+				DA215FC7163A29CA00A3E18B /* Sources */,
+				DA215FC8163A29CA00A3E18B /* Frameworks */,
+				DA215FC9163A29CA00A3E18B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AWIconSheet;
+			productName = AWIconSheet;
+			productReference = DA215FCB163A29CA00A3E18B /* AWIconSheet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DA215FF4163A29CA00A3E18B /* AWIconSheetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA21600A163A29CA00A3E18B /* Build configuration list for PBXNativeTarget "AWIconSheetTests" */;
+			buildPhases = (
+				DA215FF0163A29CA00A3E18B /* Sources */,
+				DA215FF1163A29CA00A3E18B /* Frameworks */,
+				DA215FF2163A29CA00A3E18B /* Resources */,
+				DA215FF3163A29CA00A3E18B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA215FFB163A29CA00A3E18B /* PBXTargetDependency */,
+			);
+			name = AWIconSheetTests;
+			productName = AWIconSheetTests;
+			productReference = DA215FF5163A29CA00A3E18B /* AWIconSheetTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA215FC2163A29C900A3E18B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Narcissus;
+			};
+			buildConfigurationList = DA215FC5163A29C900A3E18B /* Build configuration list for PBXProject "AWIconSheet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA215FC0163A29C900A3E18B;
+			productRefGroup = DA215FCC163A29CA00A3E18B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA215FCA163A29CA00A3E18B /* AWIconSheet */,
+				DA215FF4163A29CA00A3E18B /* AWIconSheetTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA215FC9163A29CA00A3E18B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA215FDA163A29CA00A3E18B /* InfoPlist.strings in Resources */,
+				DA215FE2163A29CA00A3E18B /* Default.png in Resources */,
+				DA215FE4163A29CA00A3E18B /* Default@2x.png in Resources */,
+				DA215FE6163A29CA00A3E18B /* Default-568h@2x.png in Resources */,
+				DA215FEC163A29CA00A3E18B /* ViewController_iPhone.xib in Resources */,
+				DA215FEF163A29CA00A3E18B /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA215FF2163A29CA00A3E18B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA216001163A29CA00A3E18B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DA215FF3163A29CA00A3E18B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA215FC7163A29CA00A3E18B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA215FDC163A29CA00A3E18B /* main.m in Sources */,
+				DA215FE0163A29CA00A3E18B /* AppDelegate.m in Sources */,
+				DA215FE9163A29CA00A3E18B /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA215FF0163A29CA00A3E18B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA216004163A29CA00A3E18B /* AWIconSheetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA215FFB163A29CA00A3E18B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA215FCA163A29CA00A3E18B /* AWIconSheet */;
+			targetProxy = DA215FFA163A29CA00A3E18B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DA215FD8163A29CA00A3E18B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA215FD9163A29CA00A3E18B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DA215FEA163A29CA00A3E18B /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA215FEB163A29CA00A3E18B /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		DA215FED163A29CA00A3E18B /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA215FEE163A29CA00A3E18B /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		DA215FFF163A29CA00A3E18B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA216000163A29CA00A3E18B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DA216005163A29CA00A3E18B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA216006163A29CA00A3E18B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DA216008163A29CA00A3E18B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
+				INFOPLIST_FILE = "AWIconSheet/AWIconSheet-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DA216009163A29CA00A3E18B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
+				INFOPLIST_FILE = "AWIconSheet/AWIconSheet-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DA21600B163A29CA00A3E18B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AWIconSheet.app/AWIconSheet";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
+				INFOPLIST_FILE = "AWIconSheetTests/AWIconSheetTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DA21600C163A29CA00A3E18B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AWIconSheet.app/AWIconSheet";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
+				INFOPLIST_FILE = "AWIconSheetTests/AWIconSheetTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA215FC5163A29C900A3E18B /* Build configuration list for PBXProject "AWIconSheet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA216005163A29CA00A3E18B /* Debug */,
+				DA216006163A29CA00A3E18B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA216007163A29CA00A3E18B /* Build configuration list for PBXNativeTarget "AWIconSheet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA216008163A29CA00A3E18B /* Debug */,
+				DA216009163A29CA00A3E18B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DA21600A163A29CA00A3E18B /* Build configuration list for PBXNativeTarget "AWIconSheetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA21600B163A29CA00A3E18B /* Debug */,
+				DA21600C163A29CA00A3E18B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA215FC2163A29C900A3E18B /* Project object */;
+}
