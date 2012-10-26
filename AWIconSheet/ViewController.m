@@ -52,9 +52,7 @@
 
 - (void)showAWSheet
 {
-    AWActionSheet *sheet = [[AWActionSheet alloc] initWithTitle:nil                                                       delegate:self
-                                              cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    sheet.IconDelegate = self;
+    AWActionSheet *sheet = [[AWActionSheet alloc] initwithIconSheetDelegate:self ItemCount:[self numberOfItemsInActionSheet]];
     [sheet showInView:self.view];
     [sheet release];
 }

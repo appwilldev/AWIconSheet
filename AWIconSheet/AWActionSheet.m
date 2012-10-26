@@ -14,6 +14,7 @@
 @property (nonatomic, retain)UIScrollView* scrollView;
 @property (nonatomic, retain)UIPageControl* pageControl;
 @property (nonatomic, retain)NSMutableArray* items;
+@property (nonatomic, assign)id<AWActionSheetDelegate> IconDelegate;
 @end
 @implementation AWActionSheet
 @synthesize scrollView;
@@ -29,18 +30,28 @@
     [super dealloc];
 }
 
--(id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...
-{
-    self = [super initWithTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-                      delegate:delegate
-             cancelButtonTitle:@"Cancel"
-        destructiveButtonTitle:nil
-             otherButtonTitles:nil];
-    if (self) {
-//        IconDelegate = (AWActionSheetDelegate)delegate;
-        [self setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
 
-        self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, 320, 320)] autorelease];
+-(id)initwithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout
+{
+    int rowCount = 3;
+    if (cout <=3) {
+        rowCount = 1;
+    } else if (cout <=6) {
+        rowCount = 2;
+    }
+    NSString* titleBlank = @"\n\n\n\n\n\n";
+    for (int i = 1 ; i<rowCount; i++) {
+        titleBlank = [NSString stringWithFormat:@"%@%@",titleBlank,@"\n\n\n\n\n\n"];
+    }
+    self = [super initWithTitle:titleBlank
+                       delegate:nil
+              cancelButtonTitle:@"Cancel"
+         destructiveButtonTitle:nil
+              otherButtonTitles:nil];
+    if (self) {
+        [self setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+        IconDelegate = delegate;
+        self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, 320, 105*rowCount)] autorelease];
         [scrollView setPagingEnabled:YES];
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setShowsHorizontalScrollIndicator:NO];
@@ -51,16 +62,17 @@
         
         [self addSubview:scrollView];
         
+        if (cout > 9) {
+            self.pageControl = [[[UIPageControl alloc] initWithFrame:CGRectMake(0, 105*rowCount, 0, 20)] autorelease];
+            [pageControl setNumberOfPages:0];
+            [pageControl setCurrentPage:0];
+            [pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
+            [self addSubview:pageControl];
+        }
         
-        self.pageControl = [[[UIPageControl alloc] initWithFrame:CGRectMake(0, 320, 0, 20)] autorelease];
-        [pageControl setNumberOfPages:0];
-        [pageControl setCurrentPage:0];
-        [pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
-        [self addSubview:pageControl];
         
-        self.items = [[[NSMutableArray alloc] init] autorelease];
+        self.items = [[[NSMutableArray alloc] initWithCapacity:cout] autorelease];
         
-//        [self reloadData];
     }
     return self;
 }
@@ -87,14 +99,26 @@
         [items removeObject:cell];
     }
     
-//    if (!IconDelegate) {
-//        return;
-//    }
+    //    if (!IconDelegate) {
+    //        return;
+    //    }
     
     int count = [IconDelegate numberOfItemsInActionSheet];
     
     if (count <= 0) {
         return;
+    }
+    
+    int rowCount = 3;
+    
+    if (count <= 3) {
+        [self setTitle:@"\n\n\n\n\n\n"];
+        [scrollView setFrame:CGRectMake(0, 10, 320, 105)];
+        rowCount = 1;
+    } else if (count <= 6) {
+        [self setTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n"];
+        [scrollView setFrame:CGRectMake(0, 10, 320, 210)];
+        rowCount = 2;
     }
     [scrollView setContentSize:CGSizeMake(320*(count/itemPerPage+1), scrollView.frame.size.height)];
     [pageControl setNumberOfPages:count/itemPerPage+1];
@@ -104,7 +128,7 @@
     for (int i = 0; i< count; i++) {
         AWActionSheetCell* cell = [IconDelegate cellForActionAtIndex:i];
         int PageNo = i/itemPerPage;
-//        NSLog(@"page %d",PageNo);
+        //        NSLog(@"page %d",PageNo);
         int index  = i%itemPerPage;
         
         if (itemPerPage == 9) {
@@ -112,16 +136,20 @@
             int row = index/3;
             int column = index%3;
             
-//            NSLog(@"%d %d %d",index,row,column);
             
-            float centerY = (1+row*2)*self.scrollView.frame.size.height/6;
+            float centerY = (1+row*2)*self.scrollView.frame.size.height/(2*rowCount);
             float centerX = (1+column*2)*self.scrollView.frame.size.width/6;
             
-//            NSLog(@"%f %f",centerX+320*PageNo,centerY);
+            //            NSLog(@"%f %f",centerX+320*PageNo,centerY);
             
             [cell setCenter:CGPointMake(centerX+320*PageNo, centerY)];
             [self.scrollView addSubview:cell];
-            [cell.iconView addTarget:self action:@selector(actionForItem:) forControlEvents:UIControlEventTouchUpInside];
+            
+            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionForItem:)];
+            [cell addGestureRecognizer:tap];
+            [tap release];
+            
+            //            [cell.iconView addTarget:self action:@selector(actionForItem:) forControlEvents:UIControlEventTouchUpInside];
             
         }
         
@@ -130,21 +158,21 @@
     
 }
 
-- (void)actionForItem:(UIButton*)sender
+- (void)actionForItem:(UITapGestureRecognizer*)recongizer
 {
-    AWActionSheetCell* cell = (AWActionSheetCell*)[sender superview];
+    AWActionSheetCell* cell = (AWActionSheetCell*)[recongizer view];
     [IconDelegate DidTapOnItemAtIndex:cell.index];
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 - (IBAction)changePage:(id)sender {
     int page = pageControl.currentPage;
     [scrollView setContentOffset:CGPointMake(320 * page, 0)];
@@ -181,9 +209,10 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         
-        self.iconView = [[[UIButton alloc] initWithFrame:CGRectMake(6.5, 0, 57, 57)] autorelease];
+        self.iconView = [[[UIImageView alloc] initWithFrame:CGRectMake(6.5, 0, 57, 57)] autorelease];
         [iconView setBackgroundColor:[UIColor clearColor]];
         [[iconView layer] setCornerRadius:8.0f];
+        [[iconView layer] setMasksToBounds:YES];
         
         [self addSubview:iconView];
         

@@ -18,12 +18,12 @@
 @end
 
 @interface AWActionSheet : UIActionSheet
-@property (nonatomic, assign)id<AWActionSheetDelegate> IconDelegate;
+-(id)initwithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout;
 @end
 
 
 @interface AWActionSheetCell : UIView
-@property (nonatomic,retain)UIButton*    iconView;
+@property (nonatomic,retain)UIImageView* iconView;
 @property (nonatomic,retain)UILabel*     titleLabel;
 @property (nonatomic,assign)int          index;
 @end
