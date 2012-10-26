@@ -24,6 +24,7 @@
 		DA215FF9163A29CA00A3E18B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA215FD1163A29CA00A3E18B /* Foundation.framework */; };
 		DA216001163A29CA00A3E18B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA215FFF163A29CA00A3E18B /* InfoPlist.strings */; };
 		DA216004163A29CA00A3E18B /* AWIconSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA216003163A29CA00A3E18B /* AWIconSheetTests.m */; };
+		DA21600F163A2A0700A3E18B /* AWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21600E163A2A0700A3E18B /* AWActionSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		DA216000163A29CA00A3E18B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA216002163A29CA00A3E18B /* AWIconSheetTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWIconSheetTests.h; sourceTree = "<group>"; };
 		DA216003163A29CA00A3E18B /* AWIconSheetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWIconSheetTests.m; sourceTree = "<group>"; };
+		DA21600D163A2A0700A3E18B /* AWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWActionSheet.h; sourceTree = "<group>"; };
+		DA21600E163A2A0700A3E18B /* AWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWActionSheet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,7 @@
 		DA215FC0163A29C900A3E18B = {
 			isa = PBXGroup;
 			children = (
+				DA216010163A2A1500A3E18B /* AWActionSheet */,
 				DA215FD5163A29CA00A3E18B /* AWIconSheet */,
 				DA215FFC163A29CA00A3E18B /* AWIconSheetTests */,
 				DA215FCE163A29CA00A3E18B /* Frameworks */,
@@ -161,6 +165,16 @@
 				DA215FFF163A29CA00A3E18B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA216010163A2A1500A3E18B /* AWActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				DA21600D163A2A0700A3E18B /* AWActionSheet.h */,
+				DA21600E163A2A0700A3E18B /* AWActionSheet.m */,
+			);
+			name = AWActionSheet;
+			path = AWIconSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +291,7 @@
 				DA215FDC163A29CA00A3E18B /* main.m in Sources */,
 				DA215FE0163A29CA00A3E18B /* AppDelegate.m in Sources */,
 				DA215FE9163A29CA00A3E18B /* ViewController.m in Sources */,
+				DA21600F163A2A0700A3E18B /* AWActionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +406,7 @@
 				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
 				INFOPLIST_FILE = "AWIconSheet/AWIconSheet-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,6 +418,7 @@
 				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
 				INFOPLIST_FILE = "AWIconSheet/AWIconSheet-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
