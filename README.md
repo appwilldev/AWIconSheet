@@ -3,7 +3,7 @@ AWIconSheet
 
 iOS 6 share style actionsheet
 
-![screenshot](http://ww1.sinaimg.cn/bmiddle/6e95c943jw1dy8j1m8f7wj.jpg)
+![screenshot](http://ww1.sinaimg.cn/mw690/73941b03jw1elcsk1y0fij20hs0vkjsd.jpg)
 
 License
 This code is distributed under the terms and conditions of the MIT license.
