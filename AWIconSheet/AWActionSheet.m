@@ -8,13 +8,16 @@
 
 #import "AWActionSheet.h"
 #import <QuartzCore/QuartzCore.h>
-#define itemPerPage 9
 
 @interface AWActionSheet()<UIScrollViewDelegate>
 @property (nonatomic, retain)UIScrollView* scrollView;
 @property (nonatomic, retain)UIPageControl* pageControl;
 @property (nonatomic, retain)NSMutableArray* items;
 @property (nonatomic, assign)id<AWActionSheetDelegate> IconDelegate;
+@property (nonatomic, assign) NSInteger itemCountforOneLine;
+
+@property (nonatomic, strong) UIView *backgroundMask;
+@property (nonatomic, strong) UIView *contentView;
 @end
 @implementation AWActionSheet
 @synthesize scrollView;
@@ -24,34 +27,33 @@
 -(void)dealloc
 {
     IconDelegate= nil;
-    [scrollView release];
-    [pageControl release];
-    [items release];
-    [super dealloc];
 }
 
 
--(id)initwithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout
+-(id)initWithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)count
 {
-    int rowCount = 3;
-    if (cout <=3) {
-        rowCount = 1;
-    } else if (cout <=6) {
-        rowCount = 2;
-    }
-    NSString* titleBlank = @"\n\n\n\n\n\n";
-    for (int i = 1 ; i<rowCount; i++) {
-        titleBlank = [NSString stringWithFormat:@"%@%@",titleBlank,@"\n\n\n\n\n\n"];
-    }
-    self = [super initWithTitle:titleBlank
-                       delegate:nil
-              cancelButtonTitle:@"Cancel"
-         destructiveButtonTitle:nil
-              otherButtonTitles:nil];
+    self = [self initWithFrame:[UIScreen mainScreen].bounds];
+    
     if (self) {
-        [self setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+        self.backgroundColor = [UIColor clearColor];
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        self.backgroundMask = [[UIView alloc] initWithFrame:self.bounds];
+        self.backgroundMask.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.backgroundMask.backgroundColor = [UIColor blackColor];
+        self.backgroundMask.alpha = 0;
+        [self addSubview:self.backgroundMask];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+        [self.backgroundMask addGestureRecognizer:tap];
+        
+        self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.contentView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self addSubview:self.contentView];
+        self.itemCountforOneLine = 4;
+        
         IconDelegate = delegate;
-        self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, 320, 105*rowCount)] autorelease];
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, CGRectGetWidth(self.contentView.bounds), 105*3)];
         [scrollView setPagingEnabled:YES];
         [scrollView setBackgroundColor:[UIColor clearColor]];
         [scrollView setShowsHorizontalScrollIndicator:NO];
@@ -60,36 +62,54 @@
         [scrollView setScrollEnabled:YES];
         [scrollView setBounces:NO];
         
-        [self addSubview:scrollView];
+        [self.contentView addSubview:scrollView];
         
-        if (cout > 9) {
-            self.pageControl = [[[UIPageControl alloc] initWithFrame:CGRectMake(0, 105*rowCount, 0, 20)] autorelease];
-            [pageControl setNumberOfPages:0];
-            [pageControl setCurrentPage:0];
-            [pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
-            [self addSubview:pageControl];
-        }
+        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.scrollView.frame), CGRectGetWidth(self.contentView.bounds), 20)];
+        [pageControl setNumberOfPages:0];
+        [pageControl setCurrentPage:0];
+        pageControl.hidesForSinglePage = YES;
+        [pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
+        [self.contentView addSubview:pageControl];
         
-        
-        self.items = [[[NSMutableArray alloc] initWithCapacity:cout] autorelease];
-        
+        self.items = [[NSMutableArray alloc] initWithCapacity:count];
+        self.windowLevel = UIWindowLevelAlert;
     }
+    
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame
+static AWActionSheet *sheet = nil;
+
+- (void)dismiss
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.backgroundMask.alpha = 0;
+        [self setContentViewFrameY:CGRectGetHeight(self.bounds)];
+    } completion:^(BOOL finished) {
+        sheet.hidden = YES;
+        sheet = nil;
+    }];
 }
 
--(void)showInView:(UIView *)view
+- (void)setContentViewFrameY:(CGFloat)y
 {
-    [super showInView:view];
+    CGRect frame = self.contentView.frame;
+    frame.origin.y = y;
+    self.contentView.frame = frame;
+}
+
+- (void)show
+{
     [self reloadData];
+    
+    sheet = self;
+    sheet.hidden = NO;
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.backgroundMask.alpha = 0.6;
+        [self setContentViewFrameY:CGRectGetHeight(self.bounds) - CGRectGetHeight(self.contentView.frame)];
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)reloadData
@@ -99,10 +119,6 @@
         [items removeObject:cell];
     }
     
-    //    if (!IconDelegate) {
-    //        return;
-    //    }
-    
     int count = [IconDelegate numberOfItemsInActionSheet];
     
     if (count <= 0) {
@@ -111,80 +127,109 @@
     
     int rowCount = 3;
     
-    if (count <= 3) {
-        [self setTitle:@"\n\n\n\n\n\n"];
-        [scrollView setFrame:CGRectMake(0, 10, 320, 105)];
+    if (count <= self.itemCountforOneLine) {
+        [scrollView setFrame:CGRectMake(0, 10, CGRectGetWidth(self.contentView.bounds), 105)];
         rowCount = 1;
-    } else if (count <= 6) {
-        [self setTitle:@"\n\n\n\n\n\n\n\n\n\n\n\n"];
-        [scrollView setFrame:CGRectMake(0, 10, 320, 210)];
+    } else if (count <= self.itemCountforOneLine*2) {
+        [scrollView setFrame:CGRectMake(0, 10, CGRectGetWidth(self.contentView.bounds), 210)];
         rowCount = 2;
     }
-    [scrollView setContentSize:CGSizeMake(320*(count/itemPerPage+1), scrollView.frame.size.height)];
-    [pageControl setNumberOfPages:count/itemPerPage+1];
+    
+    CGFloat pageControlY = CGRectGetMinY(self.scrollView.frame) + CGRectGetHeight(self.scrollView.frame);
+    CGRect pageControlFrame = self.pageControl.frame;
+    pageControlFrame.origin.y = pageControlY;
+    self.pageControl.frame = pageControlFrame;
+
+    NSUInteger itemPerPage = self.itemCountforOneLine*rowCount;
+    [scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.contentView.bounds)*ceilf((((float)count)/itemPerPage)), scrollView.frame.size.height)];
+    [pageControl setNumberOfPages:ceilf((((float)count)/itemPerPage))];
     [pageControl setCurrentPage:0];
     
+    CGFloat margin = 8;
+    CGFloat width = self.scrollView.frame.size.width - margin*2;
     
     for (int i = 0; i< count; i++) {
         AWActionSheetCell* cell = [IconDelegate cellForActionAtIndex:i];
         int PageNo = i/itemPerPage;
-        //        NSLog(@"page %d",PageNo);
         int index  = i%itemPerPage;
         
-        if (itemPerPage == 9) {
-            
-            int row = index/3;
-            int column = index%3;
-            
-            
-            float centerY = (1+row*2)*self.scrollView.frame.size.height/(2*rowCount);
-            float centerX = (1+column*2)*self.scrollView.frame.size.width/6;
-            
-            //            NSLog(@"%f %f",centerX+320*PageNo,centerY);
-            
-            [cell setCenter:CGPointMake(centerX+320*PageNo, centerY)];
-            [self.scrollView addSubview:cell];
-            
-            UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionForItem:)];
-            [cell addGestureRecognizer:tap];
-            [tap release];
-            
-            //            [cell.iconView addTarget:self action:@selector(actionForItem:) forControlEvents:UIControlEventTouchUpInside];
-            
-        }
+        int row = index/self.itemCountforOneLine;
+        int column = index%self.itemCountforOneLine;
+        
+        float centerY = (1+row*2)*self.scrollView.frame.size.height/(2*rowCount);
+        float centerX = (1+column*2)*width/(2*self.itemCountforOneLine);
+        
+        [cell setCenter:CGPointMake(margin + centerX+CGRectGetWidth(self.contentView.bounds)*PageNo, centerY)];
+        [self.scrollView addSubview:cell];
+        
+        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(actionForItem:)];
+        [cell addGestureRecognizer:tap];
         
         [items addObject:cell];
     }
     
+    UIView *scrollBG = [[UIView alloc] initWithFrame:CGRectMake(margin, 8, CGRectGetWidth(self.scrollView.frame) - margin * 2, CGRectGetHeight(self.scrollView.frame))];
+    scrollBG.backgroundColor = [UIColor whiteColor];
+    scrollBG.alpha = 0.9;
+    scrollBG.clipsToBounds = YES;
+    scrollBG.layer.cornerRadius = 5;
+    [self.contentView insertSubview:scrollBG belowSubview:self.scrollView];
+    
+    CGFloat y = CGRectGetMinY(self.pageControl.frame) +  5 + (self.pageControl.numberOfPages == 1 ? 0 : CGRectGetHeight(self.pageControl.frame));
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(margin, y, CGRectGetWidth(self.contentView.frame) - margin * 2, 44);
+    [btn setTitle:@"取消" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithRed:0.22 green:0.45 blue:1 alpha:1] forState:UIControlStateNormal];
+    [self setBtn:btn backgroundColor:[UIColor colorWithWhite:1 alpha:0.9]];
+    btn.layer.cornerRadius = 5;
+    btn.clipsToBounds = YES;
+    [btn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:btn];
+    
+    CGFloat height = CGRectGetMinY(btn.frame) + CGRectGetHeight(btn.frame) + 10;
+    
+    CGRect frame = self.contentView.frame;
+    frame.size.height = height;
+    self.contentView.frame = frame;
+}
+
+- (void)setBtn:(UIButton*)btn backgroundColor:(UIColor*)color
+{
+    [btn setBackgroundImage:[self singleColor:color size:CGSizeMake(5, 5)] forState:UIControlStateNormal];
+}
+
+- (UIImage*)singleColor:(UIColor*)color size:(CGSize)size
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
 }
 
 - (void)actionForItem:(UITapGestureRecognizer*)recongizer
 {
     AWActionSheetCell* cell = (AWActionSheetCell*)[recongizer view];
-    [IconDelegate DidTapOnItemAtIndex:cell.index];
-    [self dismissWithClickedButtonIndex:0 animated:YES];
+    
+    [self dismiss];
+    [IconDelegate DidTapOnItemAtIndex:cell.index title:cell.titleLabel.text];
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 - (IBAction)changePage:(id)sender {
-    int page = pageControl.currentPage;
-    [scrollView setContentOffset:CGPointMake(320 * page, 0)];
+    int page = (int)pageControl.currentPage;
+    [scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.contentView.bounds) * page, 0)];
 }
 #pragma mark -
 #pragma scrollview delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
-    int page = scrollView.contentOffset.x /320;
+    int page = scrollView.contentOffset.x /CGRectGetWidth(self.contentView.bounds);
     pageControl.currentPage = page;
 }
-
 
 @end
 
@@ -195,38 +240,43 @@
 @synthesize iconView;
 @synthesize titleLabel;
 
-- (void)dealloc
-{
-    [iconView release];
-    [titleLabel release];
-    
-    [super dealloc];
-}
-
 -(id)init
 {
     self = [super initWithFrame:CGRectMake(0, 0, 70, 70)];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         
-        self.iconView = [[[UIImageView alloc] initWithFrame:CGRectMake(6.5, 0, 57, 57)] autorelease];
+        self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(6.5, 0, 57, 57)];
         [iconView setBackgroundColor:[UIColor clearColor]];
-        [[iconView layer] setCornerRadius:8.0f];
+        [[iconView layer] setCornerRadius:10.5f];
         [[iconView layer] setMasksToBounds:YES];
         
         [self addSubview:iconView];
         
-        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 63, 70, 13)] autorelease];
+        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 63, 70, 13)];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
-        [titleLabel setTextAlignment:UITextAlignmentCenter];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setShadowColor:[UIColor blackColor]];
         [titleLabel setShadowOffset:CGSizeMake(0, 0.5)];
+        [titleLabel setAdjustsFontSizeToFitWidth:YES];
         [titleLabel setText:@""];
         [self addSubview:titleLabel];
+        
+        if ([self isVersionSupport:@"7.0"]) {
+            titleLabel.textColor = [UIColor colorWithRed:94.0/255.0 green:94.0/255.0 blue:94.0/255.0 alpha:1];
+            titleLabel.shadowColor = [UIColor clearColor];
+            titleLabel.shadowOffset = CGSizeZero;
+        }
     }
     return self;
+}
+
+- (BOOL)isVersionSupport:(NSString *)reqSysVer {
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    BOOL osVersionSupported = ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending);
+    return osVersionSupported;
 }
 
 @end

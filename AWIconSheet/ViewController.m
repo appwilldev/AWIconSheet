@@ -16,25 +16,19 @@
 @implementation ViewController
 @synthesize TapToShowActionsheet;
 
--(void)dealloc
-{
-    [TapToShowActionsheet release];
-    [super dealloc];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor underPageBackgroundColor];
     
-    self.TapToShowActionsheet  =[[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 300)] autorelease];
+    self.TapToShowActionsheet  =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 300)];
     [TapToShowActionsheet setBackgroundColor:[UIColor clearColor]];
     [TapToShowActionsheet setFont:[UIFont boldSystemFontOfSize:18]];
     [TapToShowActionsheet setTextColor:[UIColor darkGrayColor]];
     [TapToShowActionsheet setShadowColor:[UIColor blackColor]];
     [TapToShowActionsheet setShadowOffset:CGSizeMake(0, 0.5)];
-    [TapToShowActionsheet setTextAlignment:UITextAlignmentCenter];
+    [TapToShowActionsheet setTextAlignment:NSTextAlignmentCenter];
     [TapToShowActionsheet setText:@"Tap To Show IconSheet"];
     [self.view addSubview:TapToShowActionsheet];
     
@@ -43,18 +37,12 @@
     
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAWSheet)];
     [self.view addGestureRecognizer:tap];
-    [tap release];
-    
-
-    
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)showAWSheet
 {
-    AWActionSheet *sheet = [[AWActionSheet alloc] initwithIconSheetDelegate:self ItemCount:[self numberOfItemsInActionSheet]];
-    [sheet showInView:self.view];
-    [sheet release];
+    AWActionSheet *sheet = [[AWActionSheet alloc] initWithIconSheetDelegate:self ItemCount:[self numberOfItemsInActionSheet]];
+    [sheet show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,22 +59,22 @@
 
 -(AWActionSheetCell *)cellForActionAtIndex:(NSInteger)index
 {
-    AWActionSheetCell* cell = [[[AWActionSheetCell alloc] init] autorelease];
+    AWActionSheetCell* cell = [[AWActionSheetCell alloc] init];
     
     [[cell iconView] setBackgroundColor:
      [UIColor colorWithRed:rand()%255/255.0f
                      green:rand()%255/255.0f
                       blue:rand()%255/255.0f
                      alpha:1]];
-    [[cell titleLabel] setText:[NSString stringWithFormat:@"item %d",index]];
-    cell.index = index;
+    [[cell titleLabel] setText:[NSString stringWithFormat:@"item %d",(int)index]];
+    cell.index = (int)index;
     return cell;
 }
 
 -(void)DidTapOnItemAtIndex:(NSInteger)index
 {
-    NSLog(@"tap on %d",index);
-    [TapToShowActionsheet setText:[NSString stringWithFormat:@"Selected Item %d",index]];
+    NSLog(@"tap on %d",(int)index);
+    [TapToShowActionsheet setText:[NSString stringWithFormat:@"Selected Item %d",(int)index]];
 }
 
 @end

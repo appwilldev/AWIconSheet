@@ -214,7 +214,7 @@
 			name = AWIconSheetTests;
 			productName = AWIconSheetTests;
 			productReference = DA215FF5163A29CA00A3E18B /* AWIconSheetTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -402,6 +402,7 @@
 		DA216008163A29CA00A3E18B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
 				INFOPLIST_FILE = "AWIconSheet/AWIconSheet-Info.plist";
@@ -414,6 +415,7 @@
 		DA216009163A29CA00A3E18B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AWIconSheet/AWIconSheet-Prefix.pch";
 				INFOPLIST_FILE = "AWIconSheet/AWIconSheet-Info.plist";
@@ -476,6 +478,7 @@
 				DA216009163A29CA00A3E18B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA21600A163A29CA00A3E18B /* Build configuration list for PBXNativeTarget "AWIconSheetTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +487,7 @@
 				DA21600C163A29CA00A3E18B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

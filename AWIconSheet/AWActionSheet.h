@@ -13,12 +13,14 @@
 
 - (int)numberOfItemsInActionSheet;
 - (AWActionSheetCell*)cellForActionAtIndex:(NSInteger)index;
-- (void)DidTapOnItemAtIndex:(NSInteger)index;
+- (void)DidTapOnItemAtIndex:(NSInteger)index title:(NSString*)name;
 
 @end
 
-@interface AWActionSheet : UIActionSheet
--(id)initwithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout;
+@interface AWActionSheet : UIWindow
+-(id)initWithIconSheetDelegate:(id<AWActionSheetDelegate>)delegate ItemCount:(int)cout;
+
+- (void)show;
 @end
 
 
